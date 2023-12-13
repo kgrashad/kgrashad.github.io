@@ -1,17 +1,18 @@
 <script type="text/javascript">
-    (function () {
-    b = "https://shaykh.ai";
-    h = window.location.hostname;
-    p = window.location.port;
-    if (h === "localhost" || h === "127.0.0.1") {
-      p = p ? ":" + p : "";
-      b = "http://" + h + p;
-    }
-    d = document;
-    t = new Date().getTime();
-    s = d.createElement("script");
-    s.src = `${b}/static/frame.js?v=${t}`;
-    s.async = 1;
-    d.getElementsByTagName("head")[0].appendChild(s);
-    })();
+(function () {
+  b = "https://bot.shaykh.ai";
+  h = window.location.hostname;
+  p = window.location.port;
+  if (h === "localhost" || h === "127.0.0.1") {
+    p = p ? ":" + p : "";
+    b = "http://" + h + p;
+  }
+  d = document;
+  t = new Date().getTime();
+  s = d.createElement("script");
+  s.src = `${b}/static/frame.js?v=${t}`;
+  s.async = 1;
+  window.sykaib = b;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
 </script>
