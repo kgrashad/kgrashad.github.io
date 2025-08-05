@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Summary - Adewale Ogundimu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 16px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            background: #FF4300;
+            color: white;
+            padding: 28px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='7' cy='7' r='7'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .week-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .driver-info {
+            font-size: 14px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .content {
+            padding: 0;
+        }
+        
+        /* Hero Section */
+        .earnings-hero {
+            background: #f8f9fa;
+            color: #1e293b;
+            padding: 32px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .earnings-hero::after {
+            content: '₦';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            opacity: 0.1;
+            color: #FF4300;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .earnings-title {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        
+        
+        .congrats-text {
+            font-size: 18px;
+            color: #374151;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .stat-icon {
+            font-size: 20px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 24px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .calculation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            font-size: 15px;
+        }
+        
+        .calculation-label {
+            color: #64748b;
+        }
+        
+        .calculation-amount {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .positive {
+            color: #10b981;
+        }
+        
+        .negative {
+            color: #6b7280;
+        }
+        
+        .subtotal {
+            border-top: 2px solid #e2e8f0;
+            margin-top: 12px;
+            padding-top: 16px;
+            font-weight: 700;
+        }
+        
+        .subtotal .calculation-amount {
+            font-size: 20px;
+            color: #FF4300;
+        }
+        
+        .subtotal .calculation-amount.positive {
+            color: #10b981;
+        }
+        
+        /* Final Calculation Section */
+        .final-calculation {
+            background: #fff5f0;
+            padding: 24px;
+        }
+        
+        .final-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            font-size: 15px;
+        }
+        
+        .final-total {
+            border-top: 3px solid #FF4300;
+            margin-top: 16px;
+            padding-top: 20px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .final-total .calculation-amount {
+            font-size: 32px;
+            color: #FF4300;
+        }
+        
+        /* Payment Section */
+        .payment-section {
+            padding: 24px;
+            background: white;
+            text-align: center;
+        }
+        
+        .payment-note {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+        
+        .pay-button {
+            background: #FF4300;
+            color: white;
+            border: none;
+            padding: 18px 28px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px -4px rgba(255, 67, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .pay-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -8px rgba(255, 67, 0, 0.5);
+            background: #e63900;
+        }
+        
+        .pay-button:active {
+            transform: translateY(0);
+        }
+        
+        /* Support Section */
+        .support-section {
+            background: #f8f9fa;
+            padding: 28px 24px;
+            text-align: center;
+            color: #1e293b;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .support-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .support-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+        
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .support-button {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 16px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            color: #1e293b;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .support-button:hover {
+            border-color: #FF4300;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px -4px rgba(255, 67, 0, 0.2);
+        }
+        
+        .support-icon {
+            font-size: 20px;
+        }
+        
+        .footer-text {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 16px;
+        }
+        
+        @media (max-width: 320px) {
+            .container {
+                margin: 0 -8px;
+                border-radius: 16px 16px 0 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .support-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .support-button {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="week-badge">Week of Jun 16-22</div>
+                <h1>Your Week at a Glance</h1>
+                <div class="driver-info">
+                    <span>Adewale Ogundimu</span>
+                    <span>•</span>
+                    <span>Suzuki S-Presso</span>
+                    <span>•</span>
+                    <span>LAG-892KJ</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Hero Section -->
+            <div class="earnings-hero">
+                <div class="earnings-title">Amazing work this week!</div>
+                <div class="congrats-text">You completed 28 trips in 65 hours!</div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">⏱</span>
+                        <span class="stat-number">65</span>
+                        <div class="stat-label">Hours Online</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">◉</span>
+                        <span class="stat-number">28</span>
+                        <div class="stat-label">Total Trips</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">₦</span>
+                        <span class="stat-number">100</span>
+                        <div class="stat-label">Per Trip</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Your Uber Money Section -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span style="color: #10b981;">▸</span>
+                    Your Uber Money
+                </h2>
+                
+                <div class="calculation-item">
+                    <span class="calculation-label">You earned from trips</span>
+                    <span class="calculation-amount positive">₦2,800.00</span>
+                </div>
+                
+                <div class="calculation-item">
+                    <span class="calculation-label">+ Bonuses & adjustments</span>
+                    <span class="calculation-amount positive">₦450.00</span>
+                </div>
+                
+                <div class="calculation-item">
+                    <span class="calculation-label">- Cash you already collected</span>
+                    <span class="calculation-amount negative">₦1,200.00</span>
+                </div>
+                
+                <div class="calculation-item subtotal">
+                    <span class="calculation-label">= Money in your Uber account</span>
+                    <span class="calculation-amount positive">₦2,050.00</span>
+                </div>
+            </div>
+            
+            <!-- Your Vehicle Costs Section -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span style="color: #6b7280;">▸</span>
+                    Your Vehicle Costs This Week
+                </h2>
+                
+                <div class="calculation-item">
+                    <span class="calculation-label">Weekly vehicle payment</span>
+                    <span class="calculation-amount negative">₦3,825.50</span>
+                </div>
+                
+                <div class="calculation-item">
+                    <span class="calculation-label">+ Extra mileage fee</span>
+                    <span class="calculation-amount negative">₦250.00</span>
+                </div>
+                
+                <div class="calculation-item">
+                    <span class="calculation-label">+ Maintenance fee</span>
+                    <span class="calculation-amount negative">₦150.00</span>
+                </div>
+                
+                <div class="calculation-item subtotal">
+                    <span class="calculation-label">= Total vehicle costs</span>
+                    <span class="calculation-amount">₦4,225.50</span>
+                </div>
+            </div>
+            
+            <!-- Final Calculation Section -->
+            <div class="final-calculation">
+                <h2 class="section-title">
+                    <span style="color: #FF4300;">▸</span>
+                    Putting It All Together
+                </h2>
+                
+                <div class="final-item">
+                    <span class="calculation-label">Money in your Uber account</span>
+                    <span class="calculation-amount positive">+₦2,050.00</span>
+                </div>
+                
+                <div class="final-item">
+                    <span class="calculation-label">Your vehicle costs</span>
+                    <span class="calculation-amount negative">-₦4,225.50</span>
+                </div>
+                
+                <div class="final-item">
+                    <span class="calculation-label">Last week's unpaid amount</span>
+                    <span class="calculation-amount negative">-₦2,500.00</span>
+                </div>
+                
+                <div class="final-item final-total">
+                    <span class="calculation-label">You need to pay</span>
+                    <span class="calculation-amount">₦4,275.50</span>
+                </div>
+            </div>
+            
+            <!-- Payment Section -->
+            <div class="payment-section">
+                <p class="payment-note">Complete your payment by June 29 to keep driving</p>
+                <button class="pay-button" onclick="handlePayment()">
+                    <span>→</span>
+                    <span>Pay Now - Keep Earning!</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="support-section">
+            <div class="support-title">Need Help? We're Here!</div>
+            <div class="support-subtitle">Our support team is ready to assist you 24/7</div>
+            
+            <div class="support-grid">
+                <a href="tel:+234800123456" class="support-button">
+                    <div class="support-icon">☎</div>
+                    <div>Call Now</div>
+                </a>
+                <a href="#" class="support-button">
+                    <div class="support-icon">◗</div>
+                    <div>Live Chat</div>
+                </a>
+                <a href="#" class="support-button">
+                    <div class="support-icon">?</div>
+                    <div>Help Guide</div>
+                </a>
+            </div>
+            
+            <div class="footer-text">
+                Report #FS-2024-001242 • Generated on 8/5/2025<br>
+                © 2024 Moove. Driving your success forward.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function handlePayment() {
+            // Add a little celebration effect
+            const button = event.target;
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+                // Here you would normally redirect to payment
+                alert('Redirecting to secure payment...');
+            }, 150);
+        }
+    </script>
+</body>
+</html>
