@@ -1,1 +1,0 @@
-# shaykh.ai
