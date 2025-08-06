@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safco Board Presentation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 40px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Slide 1 - Opening */
+        .slide-1 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 2 - Careem Green */
+        .slide-2 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 3 - Insights Blue */
+        .slide-3 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 4 - Mistake Red */
+        .slide-4 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 5 - Talabat Orange */
+        .slide-5 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 6 - Dark Purple */
+        .slide-6 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 7 - Green Success */
+        .slide-7 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 8 - Gold Achievement */
+        .slide-8 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Slide 9 - Deep Blue */
+        .slide-9 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        .title {
+            font-size: 3.2em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.8em;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.8;
+            margin-bottom: 60px;
+        }
+        
+        .speaker-info {
+            font-size: 1.1em;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        
+        .speaker-name {
+            font-weight: 600;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .companies {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            align-items: center;
+        }
+        
+        .company {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.8;
+        }
+        
+        .company-logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .company-value {
+            font-size: 0.9em;
+            color: #ffd700;
+        }
+        
+        .careem {
+            color: #00d4aa;
+        }
+        
+        .talabat {
+            color: #ff6b35;
+        }
+        
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #ffd700;
+        }
+        
+        .content-grid {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .content-left {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .content-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+        
+        .step-list li {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 1.1em;
+        }
+        
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .insight-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #ffd700;
+        }
+        
+        .insight-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .phone-visual {
+            width: 200px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9em;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            max-width: 800px;
+        }
+        
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            margin: 0 10px;
+            text-align: center;
+        }
+        
+        .big-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        
+        .emphasis {
+            font-size: 1.3em;
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .key-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .point-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+        }
+        
+        .point-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .center-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Opening -->
+    <div class="slide slide-1 active">
+        <div class="title">Stories from Two MENA Success Stories</div>
+        <div class="subtitle">Experiences from Careem & Talabat's Journey</div>
+        <div class="tagline">A 10-minute journey through biggest tech exits in MENA (13B+)</div>
+        
+        <div class="speaker-info">
+            <div class="speaker-name">Khaled Rashad</div>
+            <div>Tech Leadership | Advisor & Mentor</div>
+        </div>
+        
+        <div class="companies">
+            <div class="company">
+                <div class="company-logo careem">careem</div>
+                <div class="company-value">2017-2019</div>
+            </div>
+            <div class="company">
+                <div class="company-logo talabat">talabat</div>
+                <div class="company-value">2019-2022</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Careem Manual Story -->
+    <div class="slide slide-2">
+        <div class="section-title">The "Tech" That Wasn't Tech</div>
+        <div class="content-grid">
+            <div class="content-left">
+                <div style="font-size: 1.8em; margin-bottom: 30px; color: white;">
+                    <span class="careem" style="font-weight: bold; font-size: 1.2em;">careem</span> | 2012
+                </div>
+                <ul class="step-list">
+                    <li><strong>Step 1:</strong> Customer opens app, requests ride</li>
+                    <li><strong>Step 2:</strong> Founder manually picks driver, calls them</li>
+                    <li><strong>Step 3:</strong> SMS: <em>"Your captain Ahmed is on his way!"</em></li>
+                </ul>
+                <div class="emphasis" style="margin-top: 40px;">
+                    Customers thought it was automated magic.<br>
+                    Reality: Pure manual hustle.
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="phone-visual">
+                    <div style="margin: 20px 0; font-size: 1.2em;">📱 Careem App</div>
+                    <div style="margin: 10px 0;">🚗 Request Ride</div>
+                    <div style="margin: 10px 0;">📍 Location</div>
+                    <div style="color: #ffd700; margin: 20px 0;">✨ "Seamless"</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <div style="font-weight: bold; margin-bottom: 10px;">👥 Behind the Scenes</div>
+                    <div>Founders with phones & maps</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Key Insights -->
+    <div class="slide slide-3">
+        <div class="section-title">Two Key Insights</div>
+        <div class="center-content">
+            <div class="insight-box">
+                <div class="insight-title">1. Start with Customer Value, Not Technology</div>
+                <div style="font-size: 1.1em; line-height: 1.5;">
+                    Traditional: <em>"What technology should we adopt?"</em><br>
+                    Better: <em>"What customer problems can we solve better?"</em>
+                </div>
+            </div>
+            <div class="insight-box">
+                <div class="insight-title">2. Iterate Fast to Discover Value</div>
+                <div style="font-size: 1.1em; line-height: 1.5;">
+                    Learn in <span class="highlight">weeks</span> what planning takes <span style="opacity: 0.7;">months</span><br>
+                    By the time they built real tech, they knew exactly what to build
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Careem Mistake -->
+    <div class="slide slide-4">
+        <div class="section-title">When We Lost Our Way</div>
+        <div class="center-content">
+            <div style="font-size: 1.6em; margin-bottom: 30px;">
+                <span class="careem" style="font-weight: bold;">Careem</span> | A Few Years Later
+            </div>
+            
+            <div style="font-size: 1.3em; margin-bottom: 40px;">
+                Rebuilding the driver app took <span class="highlight">a full year</span>
+            </div>
+            
+            <div class="content-grid" style="margin: 50px 0;">
+                <div class="content-left">
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                        <div style="font-size: 1.2em; margin-bottom: 20px; color: #ffd700;">After one year of "perfect" engineering...</div>
+                        <div style="font-size: 1.1em;">Drivers only cared about <strong>two screens</strong>:</div>
+                        <div style="margin: 20px 0; font-size: 1.1em;">
+                            📱 "Is this a good ride?"<br>
+                            💰 "How much am I making?"
+                        </div>
+                    </div>
+                </div>
+                <div class="content-right">
+                    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; border-left: 5px solid #ffd700;">
+                        <div style="font-style: italic; font-size: 1.1em; line-height: 1.5;">
+                            "I wasn't close enough to customers and didn't iterate fast. 
+                            This shaped how I approached leadership at Talabat."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Talabat Context -->
+    <div class="slide slide-5">
+        <div class="section-title">A Different Challenge</div>
+        <div class="center-content">
+            <div style="font-size: 1.8em; margin-bottom: 40px;">
+                <span class="talabat" style="font-weight: bold;">talabat</span> | 2019
+            </div>
+            
+            <div class="key-points" style="grid-template-columns: 1fr; max-width: 700px;">
+                <div class="point-box">
+                    <div style="font-size: 1.3em; margin-bottom: 15px; color: #ffd700;">The Situation</div>
+                    <div style="font-size: 1.1em; line-height: 1.6;">
+                        • <strong>Market leader</strong> in MENA food delivery<br>
+                        • But <span class="highlight">losing ground</span> to younger startups<br>
+                        • Tech treated as <em>"IT Department"</em> (literally in the basement)
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin: 40px 0; font-size: 1.2em; font-style: italic;">
+                Delivery Hero hired new leaders to <span class="highlight">transform the culture</span>
+            </div>
+            
+            <div style="font-size: 1.1em; opacity: 0.9;">
+                My chance to apply lessons from Careem's mistakes at scale
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Culture Problem -->
+    <div class="slide slide-6">
+        <div class="section-title">Technology Can't Fix Culture</div>
+        <div class="center-content">
+            <div class="insight-box">
+                <div style="font-size: 1.3em; margin-bottom: 20px;">The Problem:</div>
+                <div style="font-size: 1.1em;">Employees found ways to work around limitations. Introducing technology without changing <span class="highlight">legacy incentives and rules</span> limits value.</div>
+            </div>
+            
+            <div style="margin: 50px 0;">
+                <div style="font-size: 1.5em; margin-bottom: 30px; color: #ffd700;">Real Example at Talabat:</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div style="color: #ff6b6b;">Old Way</div>
+                        <div>Ship every few months</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div style="color: #4ecdc4;">New Process</div>
+                        <div>Weekly "Agile" sprints</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div style="color: #ff6b6b;">Result</div>
+                        <div>Still delivered every few months</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="emphasis">
+                They changed the process and tools, not the rules and incentives
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: What We Changed -->
+    <div class="slide slide-7">
+        <div class="section-title">What We Actually Changed</div>
+        <div class="key-points">
+            <div class="point-box">
+                <div class="point-number">1</div>
+                <div style="font-weight: 600; margin-bottom: 10px;">End-to-End Squads</div>
+                <div>5 people owning problems completely<br>Tech + Commercial/Finance/Etc together</div>
+            </div>
+            <div class="point-box">
+                <div class="point-number">2</div>
+                <div style="font-weight: 600; margin-bottom: 10px;">Simple Rule</div>
+                <div>Ship to customers every 1-2 weeks<br>Present learning. No exceptions.</div>
+            </div>
+            <div class="point-box">
+                <div class="point-number">3</div>
+                <div style="font-weight: 600; margin-bottom: 10px;">Leadership Involved</div>
+                <div>CEO, CTO, CFO directly engaged<br>Cut through middle management</div>
+            </div>
+            <div class="point-box">
+                <div class="point-number">4</div>
+                <div style="font-weight: 600; margin-bottom: 10px;">Top Alignment</div>
+                <div>Tough discussions at leadership level<br>Don't leave teams to resolve conflicts</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: BNPL Success -->
+    <div class="slide slide-8">
+        <div class="section-title">The 90-Day BNPL Challenge</div>
+        <div class="center-content">
+            <div style="font-size: 1.4em; margin-bottom: 40px;">
+                Challenge: Build <span class="highlight">Buy Now Pay Later in 90 days</span>
+            </div>
+            
+            <div class="timeline" style="margin: 50px 0;">
+                <div class="timeline-item">
+                    <div class="big-number">2</div>
+                    <div style="font-weight: bold; margin-bottom: 5px;">Weeks</div>
+                    <div>"Fake door" test<br>Validate demand</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="big-number">4</div>
+                    <div style="font-weight: bold; margin-bottom: 5px;">Weeks</div>
+                    <div>Limited real users<br>No proper billing yet</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="big-number">90</div>
+                    <div style="font-weight: bold; margin-bottom: 5px;">Days</div>
+                    <div>Working solution<br>Real customers</div>
+                </div>
+            </div>
+            
+            <div style="margin: 40px 0; font-size: 1.3em;">
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;">
+                    <div style="color: #ffd700; font-weight: bold; margin-bottom: 15px;">The Result:</div>
+                    <div>Delivery Hero expected a <span style="opacity: 0.7;">prototype</span><br>
+                    We delivered a <span class="highlight">working solution</span> with real customers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Key Learnings -->
+    <div class="slide slide-9">
+        <div class="section-title">What We Learned</div>
+        <div class="center-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 40px 0; max-width: 1000px;">
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: left;">
+                    <div style="color: #ffd700; font-weight: bold; margin-bottom: 10px;">1. Customer Value First</div>
+                    <div style="font-size: 0.95em;">Ask "what problems can we solve?" not "what technology to adopt?"</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: left;">
+                    <div style="color: #ffd700; font-weight: bold; margin-bottom: 10px;">2. Iterate Fast</div>
+                    <div style="font-size: 0.95em;">Learn in weeks what planning takes months</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: left;">
+                    <div style="color: #ffd700; font-weight: bold; margin-bottom: 10px;">3. Culture Over Technology</div>
+                    <div style="font-size: 0.95em;">Change rules and incentives, not just processes</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: left;">
+                    <div style="color: #ffd700; font-weight: bold; margin-bottom: 10px;">4. Small End-to-End Teams</div>
+                    <div style="font-size: 0.95em;">5 people, all functions, ship every 1-2 weeks</div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: left; margin: 30px auto; max-width: 500px;">
+                <div style="color: #ffd700; font-weight: bold; margin-bottom: 10px;">5. Leadership Hands-On</div>
+                <div style="font-size: 0.95em;">Align at the top first, cut through middle management</div>
+            </div>
+            
+            <div style="margin-top: 50px; font-size: 1.2em; font-style: italic;">
+                Those were some of the most interesting years of my career.
+            </div>
+            
+            <div style="margin-top: 30px; font-size: 1.1em; color: #ffd700;">
+                I'd love to hear your thoughts and answer your questions.
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+    
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">9</span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+        
+        // Click navigation
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn') || e.target.closest('.slide-counter')) {
+                return;
+            }
+            nextSlide();
+        });
+    </script>
+</body>
+</html>
